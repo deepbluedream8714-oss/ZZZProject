@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 import Home from "../views/Home.vue";
 import Agent from "../views/Agent.vue";
+import AgentDetail from "../views/AgentDetail.vue";
 import Engine from "../views/Engine.vue";
 import Assault from "../views/Assault.vue";
 
@@ -14,6 +15,11 @@ const routes = [
     path: "/agent",
     name: "Agent",
     component: Agent,
+  },
+  {
+    path: "/agent/:id",
+    name: "AgentDetail",
+    component: AgentDetail,
   },
   {
     path: "/engine",
