@@ -309,11 +309,13 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted } from 'vue';
+import { ref, computed } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
+import { useAgentStore } from '../stores/agentStore';
 
 const route = useRoute();
 const router = useRouter();
+const agentStore = useAgentStore();
 
 const activeTab = ref('stats');
 
@@ -325,76 +327,10 @@ const tabs = [
   { id: 'review', label: '평가' },
 ];
 
-// 샘플 데이터 (실제로는 API나 store에서 가져옴)
-const agents = [
-  {
-    id: 1,
-    name: '엘렌 조',
-    rank: 'S',
-    attribute: '얼음',
-    faction: '빅토리아 하우스키핑',
-    specialty: '강공',
-    tags: ['치명타', '얼음', '메인딜러'],
-    image: new URL('../assets/images/charactor/빅토리아 하우스키핑/빅토리아_엘렌 조.png', import.meta.url).href,
-    description: '빅토리아 하우스키핑의 후계자이자 강력한 얼음 딜러. 뛰어난 기동력과 치명타로 적을 압도합니다.',
-    stats: {
-      baseAtk: 875,
-      baseDef: 625,
-      baseHp: 9200,
-      impact: 120,
-      maxAtk: 2240,
-      maxDef: 1620,
-      maxHp: 23800,
-    },
-    skills: {
-      basic: '얼음 참격으로 적을 공격하며, 연속 공격 시 피해가 증가합니다.',
-      special: '강력한 돌진 공격으로 적에게 큰 얼음 피해를 입히고 얼림 효과를 부여합니다.',
-      ultimate: '궁극의 얼음 참격을 발동하여 광역 피해를 입히고 적을 동결시킵니다.',
-      passive: '치명타 발생 시 공격 속도가 증가하며, 얼음 피해가 강화됩니다.',
-    },
-    build: {
-      mainSet: '얼음 피해 증가 4세트',
-      subSet: '치명타 피해 2세트',
-      bestWeapon: '깊은 바다의 방문객 (전용)',
-      altWeapon: '캐넌 로터',
-    },
-    teams: {
-      optimal: {
-        sub: '라이칸',
-        support: '소우카쿠',
-      },
-      alternative: {
-        sub: '안비',
-        support: '니콜',
-      },
-      synergy: '얼음 속성 에이전트와 조합 시 속성 공명으로 얼음 저항 감소 및 피해 증가 효과를 받습니다.',
-    },
-    rating: {
-      damage: 95,
-      survival: 65,
-      support: 40,
-      difficulty: 55,
-    },
-    pros: [
-      '최상급 단일 대상 딜량',
-      '우수한 기동력과 회피 능력',
-      '얼음 속성 최고의 메인 딜러',
-      '치명타 기반의 폭발적인 피해',
-    ],
-    cons: [
-      '광역 딜링 능력 부족',
-      '얼음 저항이 높은 적에게 불리',
-      '높은 스킬 의존도',
-      '전용 무기 필요성',
-    ],
-    recommendation: '얼음 메인 딜러를 찾는 플레이어에게 최고의 선택입니다. 높은 투자 대비 최상급 성능을 발휘하며, 특히 보스전에서 압도적인 딜량을 자랑합니다.',
-  },
-  // 다른 에이전트들도 추가 가능
-];
-
+// Store에서 에이전트 정보 가져오기
 const agent = computed(() => {
   const id = parseInt(route.params.id);
-  return agents.find(a => a.id === id) || null;
+  return agentStore.getAgentById(id);
 });
 
 const goBack = () => {

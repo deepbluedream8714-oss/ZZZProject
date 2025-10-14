@@ -2,7 +2,6 @@
 
 /* 페이지 컨테이너 */
 .home,
-.agent,
 .engine,
 .assault {
   max-width: 1200px;
@@ -10,23 +9,14 @@
   padding: 2rem;
 }
 
-.agent {
-  max-width: 1000px;
-}
-
 /* 페이지 제목 */
 .home h1,
-.agent h1,
 .engine h1,
 .assault h1 {
   font-size: 2.5rem;
   color: var(--text-primary);
   text-align: center;
   margin-bottom: 1rem;
-}
-
-.agent h1 {
-  margin-bottom: 2rem;
 }
 
 /* 소개 텍스트 */
@@ -47,31 +37,11 @@
 }
 
 /* 섹션 스타일 */
-.agent-section {
-  margin-bottom: 3rem;
-}
-
-.agent-section:last-child {
-  margin-bottom: 0;
-}
-
-.agent-section h2,
 .assault-info h2,
 .assault-form h2 {
   font-size: 1.8rem;
   color: var(--accent-primary);
-  margin-bottom: 1rem;
-}
-
-.assault-info h2,
-.assault-form h2 {
   margin-bottom: 2rem;
-}
-
-.agent-section p {
-  font-size: 1.1rem;
-  line-height: 1.8;
-  color: var(--text-secondary);
 }
 
 /* Values 그리드 */

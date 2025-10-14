@@ -49,16 +49,26 @@ ZZZProject/
 │   ├── assets/          # 이미지, 동영상 등
 │   ├── components/      # Vue 컴포넌트
 │   │   ├── AgentCard.vue
-│   │   └── AgentFilter.vue
+│   │   ├── AgentFilter.vue
+│   │   └── Navigation.vue
 │   ├── views/           # 페이지 컴포넌트
 │   │   ├── Home.vue
 │   │   ├── Agent.vue
 │   │   └── AgentDetail.vue
 │   ├── router/          # Vue Router 설정
+│   │   └── index.js
+│   ├── stores/          # Pinia 상태 관리
+│   │   └── agentStore.js
 │   ├── services/        # API 서비스
 │   │   └── api.js
 │   └── styles/          # 전역 스타일
+│       ├── main.css
+│       ├── variables.css
+│       ├── base.css
+│       └── ...
 ├── public/              # 정적 파일
+├── vercel.json          # Vercel 배포 설정
+├── netlify.toml         # Netlify 배포 설정
 └── vite.config.js       # Vite 설정
 ```
 
@@ -101,6 +111,7 @@ netlify deploy --prod --dir=dist
 ## 🛠️ 기술 스택
 
 - **Frontend**: Vue 3 (Composition API)
+- **State Management**: Pinia
 - **Build Tool**: Vite
 - **Router**: Vue Router 4
 - **Styling**: Custom CSS (CSS Variables)
@@ -113,11 +124,24 @@ netlify deploy --prod --dir=dist
 - [x] 에이전트 목록 페이지
 - [x] 필터 시스템
 - [x] 에이전트 상세 페이지
+- [x] Pinia 상태 관리
+- [x] 보안 헤더 적용
 - [ ] 백엔드 API 연동
 - [ ] 사용자 인증
 - [ ] 즐겨찾기 기능
 - [ ] 댓글 시스템
 - [ ] SEO 최적화
+
+---
+
+## 🔒 보안
+
+프로젝트에는 보안 모범 사례가 적용되어 있습니다:
+- 보안 헤더 적용 (XSS, Clickjacking 방어)
+- 환경 변수로 민감 정보 관리
+- 의존성 취약점 없음
+
+자세한 내용은 [SECURITY.md](./SECURITY.md) 참조
 
 ---
 

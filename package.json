@@ -11,9 +11,12 @@
     "build": "vite build",
     "preview": "vite preview",
     "deploy:vercel": "vercel --prod",
-    "deploy:netlify": "npm run build && netlify deploy --prod --dir=dist"
+    "deploy:netlify": "npm run build && netlify deploy --prod --dir=dist",
+    "security:check": "npm audit",
+    "security:fix": "npm audit fix"
   },
   "dependencies": {
+    "pinia": "^3.0.3",
     "vue": "^3.5.18",
     "vue-router": "^4.5.1"
   },
