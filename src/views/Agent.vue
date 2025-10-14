@@ -198,7 +198,7 @@ const agents = ref([
   },
   {
     id: 13,
-    name: '라이칸',
+    name: '리카온',
     rank: 'S',
     attribute: '얼음',
     faction: '빅토리아 하우스키핑',
@@ -545,6 +545,37 @@ const resetAll = () => {
 @media (max-width: 480px) {
   .agents-grid {
     grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* 컨테이너 스타일 */
+.marquee-content {
+  display: flex;                 /* span 두 개를 가로로 나란히 */
+  overflow: hidden;              /* 흘러나가는 부분은 잘라냄 */
+  white-space: nowrap;           /* 텍스트 줄바꿈 방지 */
+  background-color: rgb(200, 215, 189);
+  width: 100%;                   /* 전체 폭 사용 */
+  height: 60px;                  /* 원하는 높이 */
+  align-items: center;           /* 세로 중앙 정렬 */
+  position: relative;
+}
+
+/* 텍스트 스타일 */
+.marquee-name {
+  font-family: Impact, sans-serif;
+  font-size: 2rem;
+  color: rgb(213, 228, 202);
+  padding-right: 50px;           /* 텍스트 사이 간격 */
+  animation: marquee-scroll 10s linear infinite;
+}
+
+/* 애니메이션 정의 */
+@keyframes marquee-scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%); /* 왼쪽으로 흘러감 */
   }
 }
 </style>
