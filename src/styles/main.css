@@ -1,0 +1,23 @@
+/* 메인 CSS 파일 - 모든 스타일을 통합 */
+
+/* CSS 변수 */
+@import "./variables.css";
+
+/* 기본 스타일 */
+@import "./base.css";
+
+/* 레이아웃 */
+@import "./layout.css";
+
+/* 컴포넌트 */
+@import "./components/navigation.css";
+@import "./components/cards.css";
+
+/* Views 공통 스타일 */
+@import "./views.css";
+
+/* 애니메이션 */
+@import "./animations.css";
+
+/* 반응형 */
+@import "./responsive.css";

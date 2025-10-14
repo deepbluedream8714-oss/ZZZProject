@@ -1,0 +1,28 @@
+/* 반응형 스타일 */
+
+@media (max-width: 768px) {
+  h1 {
+    font-size: 2rem;
+  }
+  h2 {
+    font-size: 1.5rem;
+  }
+  h3 {
+    font-size: 1.25rem;
+  }
+
+  .container {
+    padding: 0 1rem;
+  }
+
+  /* 모바일 레이아웃 조정 */
+  .main-content {
+    padding: 1rem 0;
+  }
+}
+
+@media (max-width: 1024px) {
+  .container {
+    max-width: 100%;
+  }
+}

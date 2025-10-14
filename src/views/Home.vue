@@ -3,7 +3,7 @@
     <div class="main_banner_section">
       <div class="main_banner_background">
         <video autoplay loop muted playsinline class="banner-video">
-          <source src="../assets/movie/Zenless.mp4" type="video/mp4">
+          <source src="../assets/movie/Zenless.mp4" type="video/mp4" />
         </video>
         <div class="video-overlay"></div>
       </div>
@@ -38,16 +38,10 @@
   </div>
 </template>
 
-<script setup>
-</script>
+<script setup></script>
 
 <style scoped>
-.home {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 2rem;
-}
-
+/* Home 페이지 고유 스타일 - 메인 배너 */
 .main_banner_section {
   background: var(--bg-secondary);
   border: 1px solid var(--border-color);
@@ -85,7 +79,6 @@
   z-index: 2;
 }
 
-/* 좌측 상단 텍스트 */
 .main_banner_text {
   position: absolute;
   top: 3rem;
@@ -111,7 +104,6 @@
   text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
 }
 
-/* 우측 하단 콘텐츠 */
 .main_banner_content {
   position: absolute;
   bottom: 3rem;
@@ -130,13 +122,17 @@
 }
 
 .main_banner_section::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   height: 3px;
-  background: linear-gradient(90deg, var(--accent-primary) 0%, var(--accent-secondary) 100%);
+  background: linear-gradient(
+    90deg,
+    var(--accent-primary) 0%,
+    var(--accent-secondary) 100%
+  );
   z-index: 4;
 }
 
@@ -179,39 +175,4 @@
     text-align: left;
   }
 }
-
-.features {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 2rem;
-  margin-top: 2rem;
-}
-
-.feature-card {
-  background: var(--bg-card);
-  border: 1px solid var(--border-color);
-  padding: 2rem;
-  border-radius: 10px;
-  box-shadow: var(--shadow);
-  transition: all 0.3s ease;
-}
-
-.feature-card:hover {
-  transform: translateY(-8px);
-  box-shadow: var(--shadow-hover);
-  border-color: var(--accent-primary);
-  background: var(--bg-secondary);
-}
-
-.feature-card h3 {
-  font-size: 1.5rem;
-  margin-bottom: 1rem;
-  color: var(--accent-primary);
-}
-
-.feature-card p {
-  color: var(--text-secondary);
-  line-height: 1.6;
-}
 </style>
-
