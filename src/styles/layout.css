@@ -9,7 +9,7 @@
 
 .main-content {
   flex: 1;
-  padding: 2rem 0;
+  padding: 0 0 2rem 0; /* 전역 패딩 표준화 */
   background: var(--bg-primary);
 }
 
@@ -17,7 +17,7 @@
 .container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 2rem;
+  padding: 0 1.5rem;
 }
 
 /* Footer */

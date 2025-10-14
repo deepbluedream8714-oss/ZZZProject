@@ -12,15 +12,15 @@
         <div class="top-bar">
           <div class="controls">
             <div class="search-container">
-              <input
-                v-model="searchQuery"
-                type="text"
-                placeholder="에이전트 이름 검색..."
-                class="search-input"
-              />
+            <input
+              v-model="searchQuery"
+              type="text"
+              placeholder="에이전트 이름 검색..."
+              class="input"
+            />
             </div>
             <div class="sort-container">
-              <select v-model="sortBy" class="sort-select">
+            <select v-model="sortBy" class="select">
                 <option value="name">이름순</option>
                 <option value="rank">등급순</option>
                 <option value="faction">소속순</option>
@@ -372,7 +372,7 @@ const resetAll = () => {
 
 .filter-sidebar {
   position: sticky;
-  top: 2rem;
+  top: 0;
   width: 280px;
   min-width: 280px;
   align-self: flex-start;
@@ -389,6 +389,7 @@ const resetAll = () => {
   border-radius: 10px;
   padding: 1.2rem;
   margin-bottom: 1.5rem;
+  margin-top: 0; /* 필터 시작점과 상단 정렬 */
 }
 
 .controls {

@@ -84,11 +84,11 @@ textarea,
 select {
   font-family: inherit;
   font-size: 1rem;
-  padding: 0.8rem;
-  border: 1px solid var(--border-color);
-  background: var(--bg-secondary);
+  padding: 0.6rem 1rem;
+  border: 1.5px solid var(--border-color);
+  background: var(--bg-tertiary);
   color: var(--text-primary);
-  border-radius: 6px;
+  border-radius: 8px;
   transition: all 0.3s ease;
 }
 
@@ -99,6 +99,42 @@ select:focus {
   border-color: var(--accent-primary);
   background: var(--bg-tertiary);
   box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.1);
+}
+
+/* 공용 유틸리티 */
+.input {
+  width: 100%;
+  padding: 0.6rem 1rem;
+  border: 1.5px solid var(--border-color);
+  background: var(--bg-tertiary);
+  color: var(--text-primary);
+  border-radius: 8px;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+}
+
+.input:focus {
+  outline: none;
+  border-color: var(--accent-primary);
+  box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.1);
+}
+
+.select {
+  width: 100%;
+  padding: 0.6rem 1rem;
+  border: 1.5px solid var(--border-color);
+  background: var(--bg-tertiary);
+  color: var(--text-primary);
+  border-radius: 8px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
 }
 
 /* 반응형 이미지 */

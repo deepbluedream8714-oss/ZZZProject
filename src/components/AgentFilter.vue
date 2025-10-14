@@ -1,5 +1,5 @@
 <template>
-  <div class="filter-container">
+  <div class="filter-container card">
     <div class="filter-header">
       <h2>필터</h2>
       <button @click="resetFilters" class="reset-btn">초기화</button>
@@ -111,10 +111,7 @@ watch(filters, (newFilters) => {
 </script>
 
 <style scoped>
-.filter-container {
-  background: var(--bg-card);
-  border: 1px solid var(--border-color);
-  border-radius: 10px;
+  .filter-container {
   padding: 1.2rem;
 }
 
