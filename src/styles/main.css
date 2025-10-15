@@ -12,6 +12,7 @@
 /* 컴포넌트 */
 @import "./components/navigation.css";
 @import "./components/cards.css";
+@import "./components/agent-detail.css";
 
 /* Views 공통 스타일 */
 @import "./views.css";

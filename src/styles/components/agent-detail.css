@@ -1,0 +1,588 @@
+/* AgentDetail 컴포넌트 스타일 */
+
+.agent-detail {
+  min-height: 100vh;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  position: relative;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+/* 상단 에이전트 정보 */
+.agent-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 0;
+  border-bottom: 2px solid var(--border-color);
+  margin-bottom: 2rem;
+}
+
+.agent-rank-info {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.rank-badge {
+  background: linear-gradient(
+    45deg,
+    var(--accent-primary),
+    var(--accent-hover)
+  );
+  color: #000;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+.agent-attributes {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.attribute-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--bg-secondary);
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  border: 1px solid var(--border-color);
+}
+
+.attribute-icon {
+  font-size: 1.2rem;
+}
+
+.agent-center-info {
+  text-align: center;
+}
+
+.dennies {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--accent-primary);
+  margin-bottom: 0.5rem;
+}
+
+.agent-name {
+  font-size: 2rem;
+  font-weight: bold;
+  margin: 0;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+.version-info {
+  text-align: right;
+  color: var(--text-secondary);
+}
+
+.version {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.game-version {
+  font-size: 0.9rem;
+}
+
+/* 배경 캐릭터 이미지 */
+.character-image-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  z-index: 1;
+  padding: 2rem;
+}
+
+.character-image {
+  max-height: 80%;
+  max-width: 60%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 0 20px rgba(0, 0, 0, 0.5));
+  opacity: 0.7; /* 배경으로 사용하므로 투명도 적용 */
+}
+
+/* 메인 컨텐츠 영역 */
+.main-content-area {
+  position: relative;
+  min-height: 700px;
+  margin: 1rem 0;
+  max-width: 1400px;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* 플로팅 섹션들 */
+.floating-sections {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1rem;
+  z-index: 10;
+  pointer-events: none; /* 배경 클릭을 허용 */
+  padding: 1rem;
+  align-content: start;
+}
+
+.floating-section {
+  pointer-events: auto; /* 각 섹션은 클릭 가능 */
+  width: 100%;
+  max-width: none;
+  height: fit-content;
+}
+
+/* 첫 번째 컬럼 */
+.floating-section:nth-child(1),
+.floating-section:nth-child(4),
+.floating-section:nth-child(7) {
+  grid-column: 1;
+}
+
+/* 두 번째 컬럼 */
+.floating-section:nth-child(2),
+.floating-section:nth-child(5) {
+  grid-column: 2;
+}
+
+/* 세 번째 컬럼 */
+.floating-section:nth-child(3),
+.floating-section:nth-child(6) {
+  grid-column: 3;
+}
+
+/* 공통 섹션 스타일 */
+.info-section {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 1rem;
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(10px); /* 배경 블러 효과 */
+  background: rgba(30, 30, 30, 0.9); /* 반투명 배경 */
+  transition: all 0.3s ease;
+  min-height: 140px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.floating-section {
+  width: 100%;
+  max-width: none;
+  min-height: auto;
+  height: fit-content;
+}
+
+.info-section:hover {
+  border-color: var(--accent-primary);
+  box-shadow: var(--shadow-hover);
+  transform: translateY(-2px);
+}
+
+.section-title {
+  font-size: 1rem;
+  font-weight: bold;
+  color: var(--accent-primary);
+  margin-bottom: 0.8rem;
+  text-align: center;
+}
+
+/* 다지 섹션 */
+.daji-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  flex: 1;
+}
+
+.daji-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem;
+  background: var(--bg-tertiary);
+  border-radius: 6px;
+  min-height: 35px;
+}
+
+.daji-label {
+  color: var(--text-primary);
+  font-weight: bold;
+}
+
+.daji-value {
+  color: var(--accent-primary);
+  font-weight: bold;
+}
+
+.cinema-preview-small {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem;
+}
+
+.cinema-preview-img {
+  width: 40px;
+  height: 25px;
+  object-fit: cover;
+  border-radius: 4px;
+  border: 1px solid var(--border-color);
+}
+
+.cinema-label {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  text-align: center;
+}
+
+/* 스탯 리스트 */
+.stats-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  flex: 1;
+}
+
+.stat-item {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  background: var(--bg-tertiary);
+  padding: 0.5rem;
+  border-radius: 6px;
+  border: 1px solid var(--border-color);
+  min-height: 40px;
+}
+
+.stat-level,
+.stat-number {
+  background: var(--accent-primary);
+  color: #000;
+  padding: 0.4rem 0.8rem;
+  border-radius: 4px;
+  font-weight: bold;
+  min-width: 35px;
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+.stat-name {
+  color: var(--text-primary);
+  font-size: 0.9rem;
+}
+
+/* 형상 시네마 */
+.cinema-episodes {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 0.8rem;
+  flex: 1;
+}
+
+.episode-item {
+  display: flex;
+  gap: 0.8rem;
+  padding: 0.4rem;
+  background: var(--bg-tertiary);
+  border-radius: 4px;
+  align-items: center;
+  min-height: 35px;
+}
+
+.episode-number {
+  color: var(--accent-primary);
+  font-weight: bold;
+  min-width: 30px;
+  font-size: 0.9rem;
+}
+
+.episode-title {
+  color: var(--text-primary);
+  font-size: 0.85rem;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  line-height: 1.2;
+}
+
+.cinema-character {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem;
+  background: var(--bg-tertiary);
+  border-radius: 6px;
+  border: 1px solid var(--border-color);
+}
+
+.character-mini {
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 1px solid var(--border-color);
+}
+
+.character-name {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  text-align: center;
+}
+
+/* 방부 */
+.support-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  flex: 1;
+}
+
+.support-item {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  background: var(--bg-tertiary);
+  padding: 0.4rem;
+  border-radius: 6px;
+  border: 1px solid var(--border-color);
+  min-height: 35px;
+}
+
+.support-icon {
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
+}
+
+.support-name {
+  color: var(--text-primary);
+  font-size: 0.9rem;
+}
+
+/* 파티 */
+.party-row {
+  display: flex;
+  gap: 0.8rem;
+  justify-content: space-between;
+  flex: 1;
+}
+
+.party-member {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+  background: var(--bg-tertiary);
+  padding: 0.6rem;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  position: relative;
+  flex: 1;
+  min-height: 80px;
+}
+
+.party-member.best-pick {
+  border-color: var(--accent-primary);
+  background: rgba(245, 158, 11, 0.1);
+}
+
+.member-icon {
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 1px solid var(--border-color);
+}
+
+.member-name {
+  color: var(--text-primary);
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+.best-label {
+  background: var(--accent-primary);
+  color: #000;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  font-weight: bold;
+}
+
+/* 디스크 */
+.disk-row {
+  display: flex;
+  gap: 0.8rem;
+  justify-content: space-between;
+  flex: 1;
+}
+
+.disk-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+  background: var(--bg-tertiary);
+  padding: 0.6rem;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  flex: 1;
+  min-height: 80px;
+}
+
+.disk-icon {
+  width: 35px;
+  height: 35px;
+  object-fit: contain;
+}
+
+.disk-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.disk-name {
+  color: var(--text-primary);
+  font-size: 0.8rem;
+  text-align: center;
+  line-height: 1.2;
+}
+
+.disk-points {
+  color: var(--accent-primary);
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+
+/* 에이전트별 배경 클래스 */
+.agent-bg-1 {
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+}
+
+.agent-bg-2 {
+  background: linear-gradient(135deg, #2d1b69 0%, #11998e 50%, #38ef7d 100%);
+}
+
+.agent-bg-3 {
+  background: linear-gradient(135deg, #ff416c 0%, #ff4b2b 50%, #ff6b6b 100%);
+}
+
+/* 반응형 */
+@media (max-width: 1400px) {
+  .main-content-area {
+    max-width: 1200px;
+  }
+
+  .floating-sections {
+    grid-template-columns: 1fr 1fr;
+    gap: 0.8rem;
+  }
+
+  .floating-section:nth-child(3),
+  .floating-section:nth-child(6) {
+    grid-column: 1;
+  }
+
+  .floating-section:nth-child(4),
+  .floating-section:nth-child(7) {
+    grid-column: 2;
+  }
+
+  .character-image {
+    max-width: 50%;
+  }
+}
+
+@media (max-width: 1200px) {
+  .main-content-area {
+    max-width: 1000px;
+  }
+
+  .floating-sections {
+    grid-template-columns: 1fr;
+    gap: 0.8rem;
+  }
+
+  .floating-section:nth-child(n) {
+    grid-column: 1;
+  }
+
+  .character-image {
+    max-width: 40%;
+    max-height: 70%;
+  }
+}
+
+@media (max-width: 768px) {
+  .agent-detail {
+    padding: 0.8rem;
+    gap: 1rem;
+  }
+
+  .agent-header {
+    flex-direction: column;
+    gap: 1rem;
+    text-align: center;
+  }
+
+  .agent-attributes {
+    justify-content: center;
+  }
+
+  .main-content-area {
+    min-height: 500px;
+    margin: 0.5rem 0;
+  }
+
+  .floating-sections {
+    padding: 0.8rem;
+  }
+
+  .party-row,
+  .disk-row {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 480px) {
+  .floating-sections {
+    gap: 0.5rem;
+    padding: 0.5rem;
+  }
+
+  .info-section {
+    padding: 0.8rem;
+    min-height: 120px;
+  }
+
+  .episode-title {
+    writing-mode: horizontal-tb;
+    text-orientation: initial;
+  }
+}
