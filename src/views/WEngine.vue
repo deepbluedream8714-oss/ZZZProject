@@ -1,9 +1,9 @@
 <template>
-  <div class="agent-page">
+  <div class="wengine-page">
     <div class="content-wrapper">
       <!-- 왼쪽 필터 사이드바 -->
       <aside class="filter-sidebar">
-        <AgentFilter v-model="filters" />
+        <WEngineFilter v-model="filters" />
       </aside>
 
       <!-- 오른쪽 메인 컨텐츠 -->
@@ -15,7 +15,7 @@
               <input
                 v-model="searchQuery"
                 type="text"
-                placeholder="에이전트 이름 검색..."
+                placeholder="W-엔진 이름 검색..."
                 class="input"
               />
             </div>
@@ -23,31 +23,37 @@
               <select v-model="sortBy" class="select">
                 <option value="name">이름순</option>
                 <option value="rank">등급순</option>
-                <option value="faction">소속순</option>
+                <option value="type">타입순</option>
+                <option value="baseATK">공격력순</option>
               </select>
             </div>
           </div>
 
           <!-- 결과 개수 -->
           <div class="results-info">
-            <p>총 <strong>{{ filteredAgents.length }}</strong>명의 에이전트</p>
+            <p>
+              총 <strong>{{ filteredWEngines.length }}</strong
+              >개의 W-엔진
+            </p>
           </div>
         </div>
 
-        <!-- 에이전트 카드 그리드 -->
-        <div class="agents-grid">
-          <AgentCard
-            v-for="agent in filteredAgents"
-            :key="agent.id"
-            :agent="agent"
-            @click="goToDetail(agent.id)"
+        <!-- W-엔진 카드 그리드 -->
+        <div class="wengines-grid">
+          <WEngineCard
+            v-for="wengine in filteredWEngines"
+            :key="wengine.id"
+            :wengine="wengine"
+            @click="showWEngineDetail(wengine)"
           />
         </div>
 
-        <!-- 에이전트가 없을 때 -->
-        <div v-if="filteredAgents.length === 0" class="no-results">
-          <p>조건에 맞는 에이전트가 없습니다.</p>
-          <button @click="resetAll" class="reset-all-btn">모든 필터 초기화</button>
+        <!-- W-엔진이 없을 때 -->
+        <div v-if="filteredWEngines.length === 0" class="no-results">
+          <p>조건에 맞는 W-엔진이 없습니다.</p>
+          <button @click="resetAll" class="reset-all-btn">
+            모든 필터 초기화
+          </button>
         </div>
       </main>
     </div>
@@ -55,65 +61,69 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue';
-import { useRouter } from 'vue-router';
-import { useAgentStore } from '../stores/agentStore';
-import AgentCard from '../components/AgentCard.vue';
-import AgentFilter from '../components/AgentFilter.vue';
+import { ref, computed } from "vue";
+import { useWEngineStore } from "../stores/wengineStore";
+import WEngineCard from "../components/WEngineCard.vue";
+import WEngineFilter from "../components/WEngineFilter.vue";
 
-const router = useRouter();
-const agentStore = useAgentStore();
+const wengineStore = useWEngineStore();
 
 const filters = ref({
   rank: [],
+  type: [],
   attribute: [],
-  specialty: [],
-  faction: []
 });
 
-const searchQuery = ref('');
-const sortBy = ref('name');
+const searchQuery = ref("");
+const sortBy = ref("name");
 
-const filteredAgents = computed(() => {
+const filteredWEngines = computed(() => {
   // 1. 필터 적용
-  let result = agentStore.filterAgents(filters.value);
+  let result = wengineStore.filterWEngines(filters.value);
 
   // 2. 검색 적용
   if (searchQuery.value) {
-    result = agentStore.searchAgents(searchQuery.value);
+    result = wengineStore.searchWEngines(searchQuery.value);
     // 검색 후에도 필터 적용
-    if (filters.value.rank.length > 0 || filters.value.attribute.length > 0 ||
-        filters.value.specialty.length > 0 || filters.value.faction.length > 0) {
-      result = result.filter(agent => {
-        return (!filters.value.rank.length || filters.value.rank.includes(agent.rank)) &&
-               (!filters.value.attribute.length || filters.value.attribute.includes(agent.attribute)) &&
-               (!filters.value.specialty.length || filters.value.specialty.includes(agent.specialty)) &&
-               (!filters.value.faction.length || filters.value.faction.includes(agent.faction));
+    if (
+      filters.value.rank.length > 0 ||
+      filters.value.type.length > 0 ||
+      filters.value.attribute.length > 0
+    ) {
+      result = result.filter((wengine) => {
+        return (
+          (!filters.value.rank.length ||
+            filters.value.rank.includes(wengine.rank)) &&
+          (!filters.value.type.length ||
+            filters.value.type.includes(wengine.type)) &&
+          (!filters.value.attribute.length ||
+            filters.value.attribute.includes(wengine.attribute))
+        );
       });
     }
   }
 
   // 3. 정렬 적용
-  return agentStore.sortAgents(result, sortBy.value);
+  return wengineStore.sortWEngines(result, sortBy.value);
 });
 
-const goToDetail = (agentId) => {
-  router.push({ name: 'AgentDetail', params: { id: agentId } });
+const showWEngineDetail = (wengine) => {
+  // W-엔진 상세 정보를 모달이나 다른 방식으로 표시
+  console.log("W-엔진 상세:", wengine);
 };
 
 const resetAll = () => {
   filters.value = {
     rank: [],
+    type: [],
     attribute: [],
-    specialty: [],
-    faction: []
   };
-  searchQuery.value = '';
+  searchQuery.value = "";
 };
 </script>
 
 <style scoped>
-.agent-page {
+.wengine-page {
   max-width: 1600px;
   margin: 0 auto;
   padding: 1.5rem;
@@ -177,7 +187,7 @@ const resetAll = () => {
   font-size: 1rem;
 }
 
-.agents-grid {
+.wengines-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 1rem;
@@ -217,7 +227,7 @@ const resetAll = () => {
 }
 
 @media (max-width: 1400px) {
-  .agents-grid {
+  .wengines-grid {
     grid-template-columns: repeat(3, 1fr);
   }
 }
@@ -233,13 +243,13 @@ const resetAll = () => {
     min-width: 100%;
   }
 
-  .agents-grid {
+  .wengines-grid {
     grid-template-columns: repeat(4, 1fr);
   }
 }
 
 @media (max-width: 768px) {
-  .agent-page {
+  .wengine-page {
     padding: 1rem;
   }
 
@@ -247,7 +257,7 @@ const resetAll = () => {
     gap: 1rem;
   }
 
-  .agents-grid {
+  .wengines-grid {
     grid-template-columns: repeat(3, 1fr);
     gap: 0.8rem;
   }
@@ -264,9 +274,8 @@ const resetAll = () => {
 }
 
 @media (max-width: 480px) {
-  .agents-grid {
+  .wengines-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 </style>
-

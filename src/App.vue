@@ -1,5 +1,6 @@
 <script setup>
 import Navigation from "./components/Navigation.vue";
+import PerformanceMonitor from "./components/PerformanceMonitor.vue";
 </script>
 
 <template>
@@ -11,10 +12,18 @@ import Navigation from "./components/Navigation.vue";
     <footer class="footer">
       <p>&copy; 2025 아스트리드의 제작소입니다. All rights reserved.</p>
     </footer>
+
+    <!-- 개발 환경에서만 성능 모니터 표시 -->
+    <PerformanceMonitor v-if="isDevelopment" />
   </div>
 </template>
 
-<style>
-/* App.vue 컴포넌트 스타일 */
-/* 글로벌 스타일은 src/styles/main.css에서 관리됩니다 */
-</style>
+<script>
+export default {
+  computed: {
+    isDevelopment() {
+      return import.meta.env.DEV;
+    },
+  },
+};
+</script>

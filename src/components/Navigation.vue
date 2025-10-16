@@ -37,7 +37,7 @@ import { ref } from "vue";
 const menuItems = [
   { name: "홈", path: "/" },
   { name: "에이전트 정보", path: "/agent" },
-  { name: "W-Engine", path: "/engine" },
+  { name: "W-Engine", path: "/wengine" },
   { name: "강습전", path: "/assault" },
 ];
 

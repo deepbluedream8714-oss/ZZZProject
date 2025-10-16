@@ -1,43 +1,45 @@
 <template>
-  <div class="agent-card" @click="$emit('click', agent)">
-    <div class="agent-image-container">
-      <OptimizedImage
-        v-if="agent.image"
-        :src="agent.image"
-        :alt="agent.name"
-        :lazy="true"
-        :quality="85"
-        format="webp"
-        width="100%"
-        height="100%"
-        class="agent-image"
-        @load="onImageLoad"
-        @error="onImageError"
+  <div class="wengine-card" @click="$emit('click', wengine)">
+    <div class="wengine-image-container">
+      <img
+        v-if="wengine.image"
+        :src="wengine.image"
+        :alt="wengine.name"
+        class="wengine-image"
       />
-      <div v-else class="agent-image-placeholder">
-        <span>{{ agent.name[0] }}</span>
+      <div v-else class="wengine-image-placeholder">
+        <span>{{ wengine.name[0] }}</span>
       </div>
-      <div class="agent-rank" :class="`rank-${agent.rank}`">
-        {{ agent.rank }}
+      <div class="wengine-rank" :class="`rank-${wengine.rank}`">
+        {{ wengine.rank }}
       </div>
     </div>
 
-    <div class="agent-content">
-      <div class="agent-header">
-        <h3 class="agent-name">{{ agent.name }}</h3>
-        <div class="agent-attribute" :class="`attr-${agent.attribute}`">
-          {{ agent.attribute }}
+    <div class="wengine-content">
+      <div class="wengine-header">
+        <h3 class="wengine-name">{{ wengine.name }}</h3>
+        <div class="wengine-type" :class="`type-${wengine.type.toLowerCase()}`">
+          {{ wengine.type }}
         </div>
       </div>
 
-      <div class="agent-meta">
-        <span class="agent-faction">{{ agent.faction }}</span>
+      <div class="wengine-stats">
+        <div class="stat-item">
+          <span class="stat-label">기본 공격력</span>
+          <span class="stat-value">{{ wengine.baseATK }}</span>
+        </div>
+        <div class="stat-item" v-if="wengine.secondaryStat">
+          <span class="stat-label">{{ wengine.secondaryStatName }}</span>
+          <span class="stat-value">{{ wengine.secondaryStat }}</span>
+        </div>
       </div>
 
-      <div class="agent-specialty-tag">{{ agent.specialty }}</div>
+      <div class="wengine-description">
+        <p>{{ wengine.description }}</p>
+      </div>
 
-      <div class="agent-tags">
-        <span v-for="tag in agent.tags" :key="tag" class="tag">
+      <div class="wengine-tags" v-if="wengine.tags && wengine.tags.length > 0">
+        <span v-for="tag in wengine.tags" :key="tag" class="tag">
           {{ tag }}
         </span>
       </div>
@@ -46,28 +48,18 @@
 </template>
 
 <script setup>
-import OptimizedImage from "./OptimizedImage.vue";
-
 defineProps({
-  agent: {
+  wengine: {
     type: Object,
     required: true,
   },
 });
 
 defineEmits(["click"]);
-
-const onImageLoad = () => {
-  console.log("이미지 로드 완료");
-};
-
-const onImageError = () => {
-  console.log("이미지 로드 실패");
-};
 </script>
 
 <style scoped>
-.agent-card {
+.wengine-card {
   display: flex;
   flex-direction: column;
   background: var(--bg-card);
@@ -80,7 +72,7 @@ const onImageError = () => {
   overflow: hidden;
 }
 
-.agent-card::before {
+.wengine-card::before {
   content: "";
   position: absolute;
   top: 0;
@@ -97,17 +89,17 @@ const onImageError = () => {
   pointer-events: none;
 }
 
-.agent-card:hover {
+.wengine-card:hover {
   transform: translateY(-5px);
   box-shadow: var(--shadow-hover), var(--glow);
   border-color: var(--accent-primary);
 }
 
-.agent-card:hover::before {
+.wengine-card:hover::before {
   opacity: 1;
 }
 
-.agent-image-container {
+.wengine-image-container {
   width: 100%;
   aspect-ratio: 1;
   border-radius: 8px;
@@ -120,19 +112,19 @@ const onImageError = () => {
   margin-bottom: 0.8rem;
 }
 
-.agent-image {
+.wengine-image {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center top;
+  object-position: center;
   transition: transform 0.3s ease;
 }
 
-.agent-card:hover .agent-image {
+.wengine-card:hover .wengine-image {
   transform: scale(1.05);
 }
 
-.agent-image-placeholder {
+.wengine-image-placeholder {
   width: 100%;
   height: 100%;
   display: flex;
@@ -148,7 +140,7 @@ const onImageError = () => {
   );
 }
 
-.agent-rank {
+.wengine-rank {
   position: absolute;
   top: 0.5rem;
   left: 0.5rem;
@@ -177,20 +169,20 @@ const onImageError = () => {
   color: #fff;
 }
 
-.agent-content {
+.wengine-content {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
 }
 
-.agent-header {
+.wengine-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 0.5rem;
 }
 
-.agent-name {
+.wengine-name {
   font-size: 1rem;
   font-weight: bold;
   color: var(--text-primary);
@@ -201,7 +193,7 @@ const onImageError = () => {
   flex: 1;
 }
 
-.agent-attribute {
+.wengine-type {
   font-size: 0.7rem;
   padding: 0.25rem 0.6rem;
   border-radius: 4px;
@@ -210,67 +202,74 @@ const onImageError = () => {
   flex-shrink: 0;
 }
 
-.attr-물리 {
+.type-attack {
   background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%);
   color: #fff;
 }
 
-.attr-화염 {
+.type-stun {
   background: linear-gradient(135deg, #ff8c42 0%, #ff6b35 100%);
   color: #fff;
 }
 
-.attr-얼음 {
+.type-support {
   background: linear-gradient(135deg, #4dabf7 0%, #339af0 100%);
   color: #fff;
 }
 
-.attr-전기 {
+.type-anomaly {
   background: linear-gradient(135deg, #a78bfa 0%, #8b5cf6 100%);
   color: #fff;
 }
 
-.attr-에테르 {
+.type-defence {
   background: linear-gradient(135deg, #34d399 0%, #10b981 100%);
   color: #fff;
 }
 
-.attr-현묵 {
+.type-rupture {
   background: linear-gradient(135deg, #64748b 0%, #475569 100%);
   color: #fff;
 }
 
-.attr-서리열 {
-  background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%);
-  color: #fff;
+.wengine-stats {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
 }
 
-.agent-meta {
+.stat-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.75rem;
+}
+
+.stat-label {
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+.stat-value {
+  color: var(--accent-primary);
+  font-weight: 600;
+}
+
+.wengine-description {
   font-size: 0.75rem;
   color: var(--text-secondary);
-}
-
-.agent-faction {
-  color: var(--accent-primary);
-  font-weight: 500;
+  line-height: 1.4;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
   overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  display: block;
 }
 
-.agent-specialty-tag {
-  font-size: 0.75rem;
-  padding: 0.3rem 0.6rem;
-  border-radius: 4px;
-  background: var(--bg-tertiary);
-  color: var(--text-primary);
-  border: 1px solid var(--border-color);
-  text-align: center;
-  font-weight: 500;
+.wengine-description p {
+  margin: 0;
 }
 
-.agent-tags {
+.wengine-tags {
   display: flex;
   flex-wrap: wrap;
   gap: 0.3rem;

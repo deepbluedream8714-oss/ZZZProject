@@ -2,8 +2,8 @@ import { createRouter, createWebHistory } from "vue-router";
 import Home from "../views/Home.vue";
 import Agent from "../views/Agent.vue";
 import AgentDetail from "../components/AgentDetail.vue";
-import Engine from "../views/Engine.vue";
 import Assault from "../views/Assault.vue";
+import WEngine from "../views/WEngine.vue";
 
 const routes = [
   {
@@ -22,14 +22,14 @@ const routes = [
     component: AgentDetail,
   },
   {
-    path: "/engine",
-    name: "Engine",
-    component: Engine,
-  },
-  {
     path: "/assault",
     name: "Assault",
     component: Assault,
+  },
+  {
+    path: "/wengine",
+    name: "WEngine",
+    component: WEngine,
   },
 ];
 
