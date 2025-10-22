@@ -103,7 +103,7 @@
         </div>
 
         <!-- 형상 시네마 -->
-        <div class="info-section floating-section">
+        <div class="info-section floating-section is-tall">
           <h3 class="section-title">형상 시네마</h3>
           <div class="cinema-episodes">
             <div
@@ -145,7 +145,7 @@
         </div>
 
         <!-- 파티 -->
-        <div class="info-section floating-section">
+        <div class="info-section floating-section is-tall">
           <h3 class="section-title">파티</h3>
           <div class="party-row">
             <div
