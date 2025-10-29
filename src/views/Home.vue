@@ -3,7 +3,7 @@
     <div class="main_banner_section">
       <div class="main_banner_background">
         <video autoplay loop muted playsinline class="banner-video">
-          <source src="../assets/movie/Zenless.mp4" type="video/mp4" />
+          <source src="../assets/movie/Zenless_2_2.mp4" type="video/mp4" />
         </video>
         <div class="video-overlay"></div>
       </div>
