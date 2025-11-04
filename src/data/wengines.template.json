@@ -1,0 +1,16 @@
+[
+  {
+    "id": "example-wengine",
+    "name": "Example W-Engine",
+    "rank": "S",
+    "type": "Attack",
+    "attribute": "화염",
+    "baseATK": 713,
+    "secondaryStat": "24%",
+    "secondaryStatName": "Crit Rate",
+    "description": "효과 설명을 여기에 작성합니다.",
+    "tags": ["화염", "크리티컬"],
+    "image": null
+  }
+]
+

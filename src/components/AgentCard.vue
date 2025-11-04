@@ -72,12 +72,13 @@ const onImageError = () => {
   flex-direction: column;
   background: var(--bg-card);
   border: 2px solid var(--border-color);
-  border-radius: 10px;
+  border-radius: 12px;
   padding: 1rem;
   cursor: pointer;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .agent-card::before {
@@ -98,8 +99,8 @@ const onImageError = () => {
 }
 
 .agent-card:hover {
-  transform: translateY(-5px);
-  box-shadow: var(--shadow-hover), var(--glow);
+  transform: translateY(-8px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3), 0 0 20px rgba(245, 158, 11, 0.2);
   border-color: var(--accent-primary);
 }
 
@@ -109,27 +110,55 @@ const onImageError = () => {
 
 .agent-image-container {
   width: 100%;
-  aspect-ratio: 1;
+  aspect-ratio: 4 / 5;
   border-radius: 8px;
   overflow: hidden;
-  background: var(--bg-tertiary);
+  background: linear-gradient(
+    135deg,
+    rgba(173, 216, 230, 0.3) 0%,
+    rgba(135, 206, 235, 0.2) 50%,
+    rgba(176, 224, 230, 0.3) 100%
+  );
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
   margin-bottom: 0.8rem;
+  backdrop-filter: blur(1px);
+}
+
+.agent-image-container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 20px,
+    rgba(255, 255, 255, 0.03) 20px,
+    rgba(255, 255, 255, 0.03) 40px
+  );
+  opacity: 0.5;
+  pointer-events: none;
+  z-index: 0;
 }
 
 .agent-image {
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  object-position: center top;
-  transition: transform 0.3s ease;
+  object-fit: contain;
+  object-position: center center;
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  z-index: 1;
+  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.2));
 }
 
 .agent-card:hover .agent-image {
-  transform: scale(1.05);
+  transform: scale(1.08) translateY(-5px);
 }
 
 .agent-image-placeholder {
@@ -143,9 +172,12 @@ const onImageError = () => {
   color: var(--text-muted);
   background: linear-gradient(
     135deg,
-    var(--bg-tertiary) 0%,
-    var(--bg-secondary) 100%
+    rgba(173, 216, 230, 0.3) 0%,
+    rgba(135, 206, 235, 0.2) 50%,
+    rgba(176, 224, 230, 0.3) 100%
   );
+  position: relative;
+  z-index: 1;
 }
 
 .agent-rank {

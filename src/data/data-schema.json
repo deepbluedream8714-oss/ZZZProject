@@ -1,0 +1,43 @@
+{
+  "agent": {
+    "required": ["id", "name", "rank", "attribute", "faction", "specialty", "tags", "description"],
+    "optional": ["image", "stats", "skills", "build", "teams", "rating", "pros", "cons", "recommendation"],
+    "types": {
+      "id": "number",
+      "name": "string",
+      "rank": "string",
+      "attribute": "string",
+      "faction": "string",
+      "specialty": "string",
+      "tags": "array",
+      "image": "string",
+      "description": "string",
+      "stats": "object",
+      "skills": "object",
+      "build": "object",
+      "teams": "object",
+      "rating": "object",
+      "pros": "array",
+      "cons": "array",
+      "recommendation": "string"
+    }
+  },
+  "wengine": {
+    "required": ["id", "name", "rank", "type", "attribute", "baseATK", "description", "tags"],
+    "optional": ["image", "secondaryStat", "secondaryStatName"],
+    "types": {
+      "id": "string",
+      "name": "string",
+      "rank": "string",
+      "type": "string",
+      "attribute": "string",
+      "baseATK": "number",
+      "secondaryStat": "string",
+      "secondaryStatName": "string",
+      "description": "string",
+      "tags": "array",
+      "image": "string"
+    }
+  }
+}
+

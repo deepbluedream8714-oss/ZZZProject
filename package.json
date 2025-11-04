@@ -13,7 +13,9 @@
     "deploy:vercel": "vercel --prod",
     "deploy:netlify": "npm run build && netlify deploy --prod --dir=dist",
     "security:check": "npm audit",
-    "security:fix": "npm audit fix"
+    "security:fix": "npm audit fix",
+    "validate:data": "node scripts/validate-data.js",
+    "convert:data": "node scripts/convert-store-to-json.js"
   },
   "dependencies": {
     "pinia": "^3.0.3",
