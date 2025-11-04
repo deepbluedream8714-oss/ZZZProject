@@ -1,11 +1,18 @@
 <template>
   <div class="wengine-card" @click="$emit('click', wengine)">
     <div class="wengine-image-container">
-      <img
+      <OptimizedImage
         v-if="wengine.image"
         :src="wengine.image"
         :alt="wengine.name"
+        :lazy="true"
+        :quality="85"
+        format="webp"
+        width="100%"
+        height="100%"
         class="wengine-image"
+        @load="onImageLoad"
+        @error="onImageError"
       />
       <div v-else class="wengine-image-placeholder">
         <span>{{ wengine.name[0] }}</span>
@@ -48,6 +55,8 @@
 </template>
 
 <script setup>
+import OptimizedImage from "./OptimizedImage.vue";
+
 defineProps({
   wengine: {
     type: Object,
@@ -56,6 +65,14 @@ defineProps({
 });
 
 defineEmits(["click"]);
+
+const onImageLoad = () => {
+  console.log("W-엔진 이미지 로드 완료");
+};
+
+const onImageError = () => {
+  console.log("W-엔진 이미지 로드 실패");
+};
 </script>
 
 <style scoped>

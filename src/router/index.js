@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 import Home from "../views/Home.vue";
 import Agent from "../views/Agent.vue";
-import AgentDetail from "../components/AgentDetail.vue";
+import AgentDetail from "../views/AgentDetail.vue";
 import Assault from "../views/Assault.vue";
 import WEngine from "../views/WEngine.vue";
 
